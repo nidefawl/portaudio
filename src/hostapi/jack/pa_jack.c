@@ -1068,8 +1068,7 @@ static PaError WaitCondition( PaJackHostApiRepresentation *hostApi )
 
     if( PaPthreadUtil_GetTime( hostApi->condClockId, &ts ) == 0 )
     {
-        ts.tv_sec += 10 * 60; /* 10 minutes */
-
+        ts.tv_sec += 6; /* Wait for up to 6 seconds */
         /* XXX: Best enclose in loop, in case of spurious wakeups? */
         err = pthread_cond_timedwait( &hostApi->cond, &hostApi->mtx, &ts );
     }
